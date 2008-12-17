@@ -7870,7 +7870,7 @@ public class CodaServer {
                      return new CodaResponse(true, null, 2029);
                 }
             }
-            sql = "select r.role_name, f.table_name as form_name, s.adj_status_name, s.verb_status_name, obj.view_flag, obj.call_flag, obj.update_flag from "+prefix+"role_form_statuses obj inner join "+prefix+"form_statuses on s.id = obj.form_status_id inner join "+prefix+"roles r on r.id = obj.role_id " + (roleId > 0 ? "and r.id = " + connection.formatStringForSQL(prefix + "roles", "id", Long.toString(roleId)) : "") + " inner join "+prefix+"tables f on f.id = s.table_id  and t.form_flag = 1  ";
+            sql = "select r.role_name, f.table_name as form_name, s.adj_status_name, s.verb_status_name, obj.view_flag, obj.call_flag, obj.update_flag from "+prefix+"role_form_statuses obj inner join "+prefix+"form_statuses s on s.id = obj.form_status_id inner join "+prefix+"roles r on r.id = obj.role_id " + (roleId > 0 ? "and r.id = " + connection.formatStringForSQL(prefix + "roles", "id", Long.toString(roleId)) : "") + " inner join "+prefix+"tables f on f.id = s.table_id  and f.form_flag = 1  ";
             if (userId > 0) {
                 sql += " inner join "+prefix+"user_roles u on r.id = u.role_id and u.user_id = " + connection.formatStringForSQL(prefix+"user_roles", "user_id", Long.toString(userId)) + " " + (groupId > 0 ?"and u.group_id = " + connection.formatStringForSQL(prefix+"user_roles", "group_id", Long.toString(groupId)) + " " : "");
             }
