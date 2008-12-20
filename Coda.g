@@ -1,5 +1,4 @@
 grammar Coda;
-// testing
 // export CLASSPATH=/Users/michaelarace/WontonServer/lib/antlr-3.0.1.jar:/Users/michaelarace/WontonServer/lib/stringtemplate-3.0.jar:/Users/michaelarace/WontonServer/lib/antlr-2.7.7.jar 
 // java -Xmx256m org.antlr.Tool Coda.g 
 
