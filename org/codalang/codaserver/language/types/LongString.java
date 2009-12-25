@@ -1,5 +1,5 @@
 /*
- * LongString.java
+ * Longstring.java
  *
  * Created on September 11, 2007, 2:30 AM
  *
@@ -14,18 +14,18 @@ package org.codalang.codaserver.language.types;
  *
  * @author michaelarace
  */
-public class LongString {
+public class Longstring {
     
     private String value;
     
     /**
      * Creates a new instance of LongString
      */
-    public LongString(String value) {
+    public Longstring(String value) {
         this.value = value;
     }
     
-    public LongString() {
+    public Longstring() {
         this.value = "";
     }
 
@@ -34,14 +34,14 @@ public class LongString {
     }
     
     public boolean equals(Object obj) {
-        if (obj.getClass().getName().equals("java.lang.String") || obj.getClass().getName().equals("org.codalang.codaserver.language.types.LongString")) {
+        if (obj.getClass().getName().equals("java.lang.String") || obj.getClass().getName().equals("org.codalang.codaserver.language.types.Longstring")) {
             return this.hashCode() == obj.hashCode();
         }
         return false;
     }
     
-    public LongString plus(LongString other) {
-        return new LongString(this.value + other.value);
+    public Longstring plus(Longstring other) {
+        return new Longstring(this.value + other.value);
     }
     
     public String getValue() {
