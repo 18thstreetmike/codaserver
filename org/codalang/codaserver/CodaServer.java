@@ -233,7 +233,7 @@ public class CodaServer {
 
         // Load the types
         try {
-            Class.forName("org.codalang.codaserver.language.types.LongString");
+            Class.forName("org.codalang.codaserver.language.types.Longstring");
             Class.forName("org.codalang.codaserver.language.types.File");
             Class.forName("org.codalang.codaserver.language.types.Database");
             Class.forName("org.codalang.codaserver.language.types.Timestamp");
