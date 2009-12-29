@@ -7941,7 +7941,7 @@ public class CodaServer {
                 }
             }
             if (environment != null) {
-               sql += " inner join user_application_permissions uap on uap.user_id = obj.id and uap.application_permission_name = 'CONNECT' and uap.environment = "+ connection.formatStringForSQL("user_application_permissions", "environment", Integer.toString(this.getIdForEnvironmentName(environment))) +" "+(groupId > 0 ? " and aup.group_id = " + connection.formatStringForSQL("user_application_permissions", "group_id", Long.toString(groupId)) + " " : "")+" inner join applications a on uap.application_id = a.id and a.application_name = " + connection.formatStringForSQL("applications", "application_name", applicationName.toUpperCase()) + " ";
+               sql += " inner join user_application_permissions uap on uap.user_id = obj.id and uap.application_permission_name = 'CONNECT' and ( uap.environment = "+ connection.formatStringForSQL("user_application_permissions", "environment", Integer.toString(this.getIdForEnvironmentName(environment))) +" OR uap.environment IS NULL) "+(groupId > 0 ? " and aup.group_id = " + connection.formatStringForSQL("user_application_permissions", "group_id", Long.toString(groupId)) + " " : "")+" inner join applications a on uap.application_id = a.id and a.application_name = " + connection.formatStringForSQL("applications", "application_name", applicationName.toUpperCase()) + " ";
             }
             sql += " where obj.active_flag = 1 and obj.user_name = " + connection.formatStringForSQL("users", "user_name", entityName.toUpperCase());
             rs = connection.runQuery(sql, null);
