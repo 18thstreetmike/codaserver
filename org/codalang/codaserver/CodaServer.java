@@ -7315,7 +7315,7 @@ public class CodaServer {
                 }
             }
             if (environment != null) {
-               sql += " inner join user_application_permissions uap on uap.user_id = obj.id and uap.application_permission_name = 'CONNECT' and uap.environment = "+ serverConnection.formatStringForSQL("user_application_permissions", "environment", Integer.toString(this.getIdForEnvironmentName(environment))) +" "+(groupId > 0 ? " and aup.group_id = " + serverConnection.formatStringForSQL("user_application_permissions", "group_id", Long.toString(groupId)) + " " : "")+" inner join applications a on uap.application_id = a.id and a.application_name = " + serverConnection.formatStringForSQL("applications", "application_name", applicationName.toUpperCase()) + " ";
+               sql += " inner join user_application_permissions uap on uap.user_id = obj.id and uap.application_permission_name = 'CONNECT' and (uap.environment = "+ serverConnection.formatStringForSQL("user_application_permissions", "environment", Integer.toString(this.getIdForEnvironmentName(environment))) +" OR uap.environment IS NULL) "+(groupId > 0 ? " and aup.group_id = " + serverConnection.formatStringForSQL("user_application_permissions", "group_id", Long.toString(groupId)) + " " : "")+" inner join applications a on uap.application_id = a.id and a.application_name = " + serverConnection.formatStringForSQL("applications", "application_name", applicationName.toUpperCase()) + " ";
             }
             if (environment == null && groupId > 0) {
                 sql += " inner join user_groups g on obj.id = g.user_id and g.group_id = " + serverConnection.formatStringForSQL("user_groups", "id", Long.toString(groupId)) + " ";
