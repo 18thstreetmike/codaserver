@@ -181,8 +181,12 @@ public class TypeParser implements Cloneable {
     public static Vector<String> explodeArray(String array) {
         Vector retval = new Vector();
         array = array.trim().substring(1, array.trim().length() - 2).trim();
-        array = array.substring(1, array.length()-2);
-        String [] fields = array.split("'\\s*,\\s*'"); 
+        if (array.length() > 2) {
+			array = array.substring(1, array.length()-2);
+		} else {
+			array = array.substring(1, array.length()-1);
+		}
+		String [] fields = array.split("'\\s*,\\s*'");
         for(int i = 0; i < fields.length; i++ ) {
             retval.add(fields[i].replace("''", "'"));
         }

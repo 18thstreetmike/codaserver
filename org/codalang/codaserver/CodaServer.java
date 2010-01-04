@@ -3394,13 +3394,13 @@ public class CodaServer {
         return retval;
     }
 
-    private Hashtable<String,TableFieldDefinition> getFieldsForTable(CodaConnection connection, String prefix, long tableId) {
+    private Hashtable<String,TableFieldDefinition> getFieldsForTable(CodaConnection connection, String prefix, long tableId, CodaConnection serverConnection) {
         
         Hashtable<String,TableFieldDefinition> retval = new Hashtable();
         CodaResultSet rs = connection.runQuery("select tf.id, tf.field_name, tf.display_name, tf.type_name, tf.array_flag, tf.nullable_flag, tf.ref_table_id, tf.default_variable_id, tf.default_value, tf.create_user_name, tf.create_date, tf.mod_user_name, tf.mod_date from "+prefix+"table_fields tf where tf.table_id = " + connection.formatStringForSQL(prefix+"table_fields", "table_id", Long.toString(tableId)), null);
         if (!rs.getErrorStatus()) {
             while(rs.next()) {
-                TableFieldDefinition temp = new TableFieldDefinition(rs.getDataLong(0), rs.getData(1), this.getIdForObjectName(connection, rs.getData(3), CodaServer.OBJECT_TYPE_TYPE), rs.getData(3), rs.getData(2), (rs.getDataInt(4) == 1), (rs.getData(6) != null && !rs.getData(6).equals("")), (rs.getData(6) != null && !rs.getData(6).equals("") ? rs.getDataLong(6) : -1), rs.getData(7) != null ? rs.getDataInt(7) : -1, rs.getData(8), rs.getData(9), rs.getDataDate(10), rs.getData(11), rs.getDataDate(12));
+                TableFieldDefinition temp = new TableFieldDefinition(rs.getDataLong(0), rs.getData(1), this.getIdForObjectName(serverConnection, rs.getData(3), CodaServer.OBJECT_TYPE_TYPE), rs.getData(3), rs.getData(2), (rs.getDataInt(4) == 1), (rs.getData(6) != null && !rs.getData(6).equals("")), (rs.getData(6) != null && !rs.getData(6).equals("") ? rs.getDataLong(6) : -1), rs.getData(7) != null ? rs.getDataInt(7) : -1, rs.getData(8), rs.getData(9), rs.getDataDate(10), rs.getData(11), rs.getDataDate(12));
                 temp.setNullableFlag(rs.getDataInt(5) == 1);
                 retval.put(rs.getData(1), temp);
             }
@@ -3629,7 +3629,8 @@ public class CodaServer {
         }
 
         try {
-            String classFile = GroovyClassGenerator.getTableClass(tableName, new Vector(this.getFieldsForTable(connection, prefix, tableId).values()));
+			CodaConnection serverConnection = this.database.getConnection();
+			String classFile = GroovyClassGenerator.getTableClass(tableName, new Vector(this.getFieldsForTable(connection, prefix, tableId, serverConnection).values()));
             Hashtable values = new Hashtable();
             values.put("class_file", classFile);
             connection.updateRow(prefix+"tables", "id", tableId, values);
@@ -5314,7 +5315,7 @@ public class CodaServer {
         Vector retval = new Vector();
         CodaResultSet rs = connection.runQuery("select * from " + tableName + " where id = " + connection.formatStringForSQL(tableName, "id", Long.toString(objectId)), null);
         if (!rs.getErrorStatus() && rs.next()) {
-            if (formFlag && !deployedApplications.hasFormStatusPermission(applicationName, userId, (groupFlag ? sessions.getSessionGroupId(sessionKey) : -1), environmentId, Datasource.FORM_STATUS_VIEW, tableName, rs.getDataLong("status") )) {
+            if (formFlag && !deployedApplications.hasFormStatusPermission(applicationName, userId, (groupFlag ? sessions.getSessionGroupId(sessionKey) : -1), environmentId, Datasource.FORM_STATUS_VIEW, tableName, rs.getDataLong("status_id") )) {
                 return new CodaResponse(true, null, 9013);
             }
             if (!greedyFlag) {
@@ -5334,7 +5335,7 @@ public class CodaServer {
                         Hashtable temp = new Hashtable();
                         CodaResultSet rs2 = connection.runQuery("select * from " + rs.getData(0) + " where parent_table_id = " + connection.formatStringForSQL(rs.getData(0), "parent_table_id", Long.toString(objectId)), null);
                         if (!rs2.getErrorStatus() && rs2.next()) {
-                            if (!formFlag || (formFlag && deployedApplications.hasFormStatusPermission(applicationName, userId, (groupFlag ? sessions.getSessionGroupId(sessionKey) : -1), environmentId, Datasource.FORM_STATUS_VIEW, rs.getData(0), rs2.getDataLong("status") ))) {
+                            if (!formFlag || (formFlag && deployedApplications.hasFormStatusPermission(applicationName, userId, (groupFlag ? sessions.getSessionGroupId(sessionKey) : -1), environmentId, Datasource.FORM_STATUS_VIEW, rs.getData(0), rs2.getDataLong("status_id") ))) {
                                 retval.add(rs2);
                             }
                         }
@@ -5400,7 +5401,7 @@ public class CodaServer {
 
         ExecutionContext context = new ExecutionContext(this, database);
 
-		Hashtable<String,TableFieldDefinition> fields = this.getFieldsForTable(connection, prefix, tableId);
+		Hashtable<String,TableFieldDefinition> fields = this.getFieldsForTable(connection, prefix, tableId, serverConnection);
 
 		// get rid of the stray row
 		if (rows.get(rows.size() - 1).size() == 0) {
@@ -5649,7 +5650,7 @@ public class CodaServer {
 
         ExecutionContext context = new ExecutionContext(this, database);
 
-        Hashtable<String,TableFieldDefinition> fields = this.getFieldsForTable(connection, prefix, tableId);
+        Hashtable<String,TableFieldDefinition> fields = this.getFieldsForTable(connection, prefix, tableId, serverConnection);
 
         //capitalize the columns.  This is just to make life easier
         for (int i = 0; i < columns.size(); i++) {
@@ -5974,7 +5975,7 @@ public class CodaServer {
 							for (int j = 0; j < allColumnNames.size(); j++) {
 								rowHashtable.put(allColumnNames.get(j), currentRows.getData(j));
 							}
-							updatingRecords.add(this.prepareHashtablesForTrigger(context, serverConnection, this.getFieldsForTable(connection, prefix, tableId), rowHashtable, null));
+							updatingRecords.add(this.prepareHashtablesForTrigger(context, serverConnection, this.getFieldsForTable(connection, prefix, tableId, serverConnection), rowHashtable, null));
 						}
 					}
 					for (Vector<Hashtable> i : updatingRecords) {
@@ -5993,7 +5994,7 @@ public class CodaServer {
 				}
 
 				if (!softDeleteFlag) {
-					Hashtable<String,TableFieldDefinition> fields = this.getFieldsForTable(connection, prefix, tableId);
+					Hashtable<String,TableFieldDefinition> fields = this.getFieldsForTable(connection, prefix, tableId, serverConnection);
 					Vector<String> arrayColumns = new Vector();
 					Enumeration<String> fieldNames = fields.keys();
 					while (fieldNames.hasMoreElements()) {
@@ -6029,7 +6030,7 @@ public class CodaServer {
 								for (int j = 0; j < allColumnNames.size(); j++) {
 									rowHashtable.put(allColumnNames.get(j), currentRows.getData(j));
 								}
-								updatingRecords.add(this.prepareHashtablesForTrigger(context, serverConnection, this.getFieldsForTable(connection, prefix, tableId), rowHashtable, null));
+								updatingRecords.add(this.prepareHashtablesForTrigger(context, serverConnection, this.getFieldsForTable(connection, prefix, tableId, serverConnection), rowHashtable, null));
 							}
 						}
 					}
@@ -6115,7 +6116,7 @@ public class CodaServer {
 
         ExecutionContext context = new ExecutionContext(this, database);
 
-        Hashtable<String,TableFieldDefinition> fields = this.getFieldsForTable(connection, prefix, tableId);
+        Hashtable<String,TableFieldDefinition> fields = this.getFieldsForTable(connection, prefix, tableId, serverConnection);
 
         //capitalize the columns.  This is just to make life easier
         for (int i = 0; i < columns.size(); i++) {
