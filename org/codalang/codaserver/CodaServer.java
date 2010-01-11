@@ -6581,7 +6581,7 @@ public class CodaServer {
 				return new CodaResponse(rs);
 			}
 		} catch (Exception e) {
-            return new CodaResponse(true, null, 8004, rs.getErrorString() + " [" + sql + "]");
+            return new CodaResponse(true, null, 8004, rs.getErrorString());
         }
 
     }

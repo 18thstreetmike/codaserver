@@ -47,7 +47,7 @@ public class JDBCMetadata implements CodaDatabaseMetadata {
 			DatabaseMetaData metadata = conn.getMetaData();
             ResultSet rs = metadata.getColumns(null, null, tableName.toUpperCase(), null);
 			while(rs.next()) {
-                retvalTemp.add(new ColumnDefinition(rs.getString("COLUMN_NAME"), rs.getInt("DATA_TYPE"), (rs.getInt("NULLABLE") == DatabaseMetaData.columnNullable)));
+                retvalTemp.add(new ColumnDefinition(rs.getString("COLUMN_NAME").toUpperCase(), rs.getInt("DATA_TYPE"), (rs.getInt("NULLABLE") == DatabaseMetaData.columnNullable)));
             }
             return retvalTemp.toArray(new ColumnDefinition[retvalTemp.size()]);
         } catch (SQLException ex) {
