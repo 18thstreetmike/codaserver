@@ -6546,7 +6546,8 @@ public class CodaServer {
         }
 
         CodaResultSet rs = null;
-        try {
+		String sql = "";
+		try {
 			if (fromClause != null) {
 				fromClause.setColumns(this, database);
 			}
@@ -6572,7 +6573,7 @@ public class CodaServer {
                 }
 
             }
-            String sql = selectClause + (fromClause != null ? fromClause.print() : "") + (fromClause != null ? (whereClauseAddition != "" || whereClause != null ? " where " : "") + (whereClause != null ? whereClause.print(fromClause) +  (whereClauseAddition != "" ? " and " + whereClauseAddition : "")  : whereClauseAddition) : "" ) + (groupByClause != null ? groupByClause : "") + (havingClause != null ? havingClause : "") + (orderByClause != null ? orderByClause : "");
+            sql = selectClause + (fromClause != null ? fromClause.print() : "") + (fromClause != null ? (whereClauseAddition != "" || whereClause != null ? " where " : "") + (whereClause != null ? whereClause.print(fromClause) +  (whereClauseAddition != "" ? " and " + whereClauseAddition : "")  : whereClauseAddition) : "" ) + (groupByClause != null ? groupByClause : "") + (havingClause != null ? havingClause : "") + (orderByClause != null ? orderByClause : "");
             rs = connection.runQuery(sql  , null, top, startingAt);
 			if (rs.getErrorStatus()) {
 				return new CodaResponse(true, null, 8004, rs.getErrorString() + " [" + sql + "]");
@@ -6580,7 +6581,7 @@ public class CodaServer {
 				return new CodaResponse(rs);
 			}
 		} catch (Exception e) {
-            return new CodaResponse(true, null, 8004, e.getMessage());
+            return new CodaResponse(true, null, 8004, rs.getErrorString() + " [" + sql + "]");
         }
 
     }
