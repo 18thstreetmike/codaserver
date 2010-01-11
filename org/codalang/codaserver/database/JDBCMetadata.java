@@ -37,7 +37,8 @@ public class JDBCMetadata implements CodaDatabaseMetadata {
             }
             return retval.toArray(new String[retval.size()]);
         } catch (SQLException ex) {
-            return new String[0];
+            System.out.println(ex.getMessage());
+			return new String[0];
         }
     }
 

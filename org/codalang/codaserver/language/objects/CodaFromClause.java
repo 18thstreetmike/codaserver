@@ -83,7 +83,7 @@ public class CodaFromClause {
 				throw new CodaException("The column '" + columnName + "' is ambiguous.");
 			}
         } else {
-            throw new CodaException("The column '" + columnName + "' is not found in the source tables. Aliases size: " + aliases.size() + ", Columns size" + getColumns().size());
+            throw new CodaException("The column '" + columnName + "' is not found in the source tables. Aliases size: " + aliases.size() + ", Columns size " + getColumns().size());
         }
     }
 
