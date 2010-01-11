@@ -30,14 +30,13 @@ public class JDBCMetadata implements CodaDatabaseMetadata {
     public String[] getTables() {
         try {
             DatabaseMetaData metadata = conn.getMetaData();
-            ResultSet rs = metadata.getTables(null, "PUBLIC", null, null);
+            ResultSet rs = metadata.getTables(null, null, "%", null);
             Vector<String> retval = new Vector();
             while(rs.next()) {
                 retval.add(rs.getString("TABLE_NAME").toUpperCase());
             }
             return retval.toArray(new String[retval.size()]);
         } catch (SQLException ex) {
-            System.exit(0);
 			return new String[0];
         }
     }
