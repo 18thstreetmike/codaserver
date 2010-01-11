@@ -30,7 +30,7 @@ public class JDBCMetadata implements CodaDatabaseMetadata {
     public String[] getTables() {
         try {
             DatabaseMetaData metadata = conn.getMetaData();
-            ResultSet rs = metadata.getTables(null, null, "%", null);
+            ResultSet rs = metadata.getTables(null, "PUBLIC", null, null);
             Vector<String> retval = new Vector();
             while(rs.next()) {
                 retval.add(rs.getString("TABLE_NAME").toUpperCase());
@@ -45,7 +45,7 @@ public class JDBCMetadata implements CodaDatabaseMetadata {
         try {
             Vector<ColumnDefinition> retvalTemp = new Vector<ColumnDefinition>();
 			DatabaseMetaData metadata = conn.getMetaData();
-            ResultSet rs = metadata.getColumns(null, null, tableName.toUpperCase(), null);
+            ResultSet rs = metadata.getColumns(null, null, tableName.toLowerCase(), null);
 			while(rs.next()) {
                 retvalTemp.add(new ColumnDefinition(rs.getString("COLUMN_NAME").toUpperCase(), rs.getInt("DATA_TYPE"), (rs.getInt("NULLABLE") == DatabaseMetaData.columnNullable)));
             }
