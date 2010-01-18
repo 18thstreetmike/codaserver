@@ -514,7 +514,7 @@ public class MySQLConnection implements CodaConnection {
                 ResultSetMetaData rsmd = rs.getMetaData();
                 columnHeadings = new Vector();
                 for (int i = 0; i < rsmd.getColumnCount(); i++) {
-                    columnHeadings.add(new CodaResultSetColumnHeading(rsmd.getColumnName(i+1).equals("") ? "COLUMN" : rsmd.getColumnName(i+1), rsmd.getColumnType(i+1)));
+                    columnHeadings.add(new CodaResultSetColumnHeading(rsmd.getColumnLabel(i+1).equals("") ? "COLUMN" : rsmd.getColumnLabel(i+1), rsmd.getColumnType(i+1)));
                 }
                 wrs = new CodaResultSet(columnHeadings);
             }

@@ -1948,10 +1948,10 @@ selectItem returns [String value]
       // starts with: "alias = column_name"
       (alias2) => (
           (alias2 '*') => a2=alias2 st2='*'
-        | (alias2 dbObject ',') => a2=alias2 co=column
-        | (alias2 dbObject (arithmeticOperator | '(')) => a2=alias2 ex=expression
-        | (alias2 column) => a2=alias2 co=column
-        | (alias2 expression) => a2=alias2 ex=expression
+        | (alias2 dbObject ',') => a2=alias2 co=column (a1=alias1)?
+        | (alias2 dbObject (arithmeticOperator | '(')) => a2=alias2 ex=expression (a1=alias1)?
+        | (alias2 column) => a2=alias2 co=column (a1=alias1)?
+        | (alias2 expression) => a2=alias2 ex=expression (a1=alias1)?
         )
       // some shortcuts:
     | (dbObject (alias1)? ',') => co=column (a1=alias1)?
