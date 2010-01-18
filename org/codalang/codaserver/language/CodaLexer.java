@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 /Users/michaelarace/code/codaserver/src/Coda.g 2010-01-18 13:21:40
+// $ANTLR 3.0.1 /Users/michaelarace/code/codaserver/src/Coda.g 2010-01-18 14:31:59
 
 	package org.codalang.codaserver.language;
 
@@ -3930,11 +3930,11 @@ public class CodaLexer extends Lexer {
     public final void mASCIIStringLiteral() throws RecognitionException {
         try {
             int _type = ASCIIStringLiteral;
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2237:5: ( '\\'' (~ '\\'' )* '\\'' ( '\\'' (~ '\\'' )* '\\'' )* )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2238:5: '\\'' (~ '\\'' )* '\\'' ( '\\'' (~ '\\'' )* '\\'' )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2246:5: ( '\\'' (~ '\\'' )* '\\'' ( '\\'' (~ '\\'' )* '\\'' )* )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2247:5: '\\'' (~ '\\'' )* '\\'' ( '\\'' (~ '\\'' )* '\\'' )*
             {
             match('\''); 
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2238:10: (~ '\\'' )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2247:10: (~ '\\'' )*
             loop1:
             do {
                 int alt1=2;
@@ -3947,7 +3947,7 @@ public class CodaLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2238:11: ~ '\\''
+            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2247:11: ~ '\\''
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -3969,7 +3969,7 @@ public class CodaLexer extends Lexer {
             } while (true);
 
             match('\''); 
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2238:24: ( '\\'' (~ '\\'' )* '\\'' )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2247:24: ( '\\'' (~ '\\'' )* '\\'' )*
             loop3:
             do {
                 int alt3=2;
@@ -3982,10 +3982,10 @@ public class CodaLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2238:26: '\\'' (~ '\\'' )* '\\''
+            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2247:26: '\\'' (~ '\\'' )* '\\''
             	    {
             	    match('\''); 
-            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2238:31: (~ '\\'' )*
+            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2247:31: (~ '\\'' )*
             	    loop2:
             	    do {
             	        int alt2=2;
@@ -3998,7 +3998,7 @@ public class CodaLexer extends Lexer {
 
             	        switch (alt2) {
             	    	case 1 :
-            	    	    // /Users/michaelarace/code/codaserver/src/Coda.g:2238:32: ~ '\\''
+            	    	    // /Users/michaelarace/code/codaserver/src/Coda.g:2247:32: ~ '\\''
             	    	    {
             	    	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='\uFFFE') ) {
             	    	        input.consume();
@@ -4043,12 +4043,12 @@ public class CodaLexer extends Lexer {
     public final void mUnicodeStringLiteral() throws RecognitionException {
         try {
             int _type = UnicodeStringLiteral;
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2242:5: ( 'U' '\\'' (~ '\\'' )* '\\'' ( '\\'' (~ '\\'' )* '\\'' )* )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2243:5: 'U' '\\'' (~ '\\'' )* '\\'' ( '\\'' (~ '\\'' )* '\\'' )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2251:5: ( 'U' '\\'' (~ '\\'' )* '\\'' ( '\\'' (~ '\\'' )* '\\'' )* )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2252:5: 'U' '\\'' (~ '\\'' )* '\\'' ( '\\'' (~ '\\'' )* '\\'' )*
             {
             match('U'); 
             match('\''); 
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2243:14: (~ '\\'' )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2252:14: (~ '\\'' )*
             loop4:
             do {
                 int alt4=2;
@@ -4061,7 +4061,7 @@ public class CodaLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2243:15: ~ '\\''
+            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2252:15: ~ '\\''
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -4083,7 +4083,7 @@ public class CodaLexer extends Lexer {
             } while (true);
 
             match('\''); 
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2243:28: ( '\\'' (~ '\\'' )* '\\'' )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2252:28: ( '\\'' (~ '\\'' )* '\\'' )*
             loop6:
             do {
                 int alt6=2;
@@ -4096,10 +4096,10 @@ public class CodaLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2243:30: '\\'' (~ '\\'' )* '\\''
+            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2252:30: '\\'' (~ '\\'' )* '\\''
             	    {
             	    match('\''); 
-            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2243:35: (~ '\\'' )*
+            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2252:35: (~ '\\'' )*
             	    loop5:
             	    do {
             	        int alt5=2;
@@ -4112,7 +4112,7 @@ public class CodaLexer extends Lexer {
 
             	        switch (alt5) {
             	    	case 1 :
-            	    	    // /Users/michaelarace/code/codaserver/src/Coda.g:2243:36: ~ '\\''
+            	    	    // /Users/michaelarace/code/codaserver/src/Coda.g:2252:36: ~ '\\''
             	    	    {
             	    	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='\uFFFE') ) {
             	    	        input.consume();
@@ -4157,8 +4157,8 @@ public class CodaLexer extends Lexer {
     public final void mObjectName() throws RecognitionException {
         try {
             int _type = ObjectName;
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2249:2: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2249:4: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2258:2: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2258:4: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -4170,7 +4170,7 @@ public class CodaLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2249:26: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2258:26: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop7:
             do {
                 int alt7=2;
@@ -4218,7 +4218,7 @@ public class CodaLexer extends Lexer {
     public final void mInteger() throws RecognitionException {
         try {
             int _type = Integer;
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2251:9: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2260:9: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -4230,23 +4230,23 @@ public class CodaLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("2251:1: Integer : ( '0' | '1' .. '9' ( '0' .. '9' )* );", 9, 0, input);
+                    new NoViableAltException("2260:1: Integer : ( '0' | '1' .. '9' ( '0' .. '9' )* );", 9, 0, input);
 
                 throw nvae;
             }
             switch (alt9) {
                 case 1 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2251:11: '0'
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2260:11: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2251:17: '1' .. '9' ( '0' .. '9' )*
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2260:17: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2251:26: ( '0' .. '9' )*
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2260:26: ( '0' .. '9' )*
                     loop8:
                     do {
                         int alt8=2;
@@ -4259,7 +4259,7 @@ public class CodaLexer extends Lexer {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // /Users/michaelarace/code/codaserver/src/Coda.g:2251:27: '0' .. '9'
+                    	    // /Users/michaelarace/code/codaserver/src/Coda.g:2260:27: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -4287,10 +4287,10 @@ public class CodaLexer extends Lexer {
     public final void mWS() throws RecognitionException {
         try {
             int _type = WS;
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2253:4: ( ( ' ' | '\\t' | '\\n' | '\\r' )+ )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2253:6: ( ' ' | '\\t' | '\\n' | '\\r' )+
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2262:4: ( ( ' ' | '\\t' | '\\n' | '\\r' )+ )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2262:6: ( ' ' | '\\t' | '\\n' | '\\r' )+
             {
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2253:6: ( ' ' | '\\t' | '\\n' | '\\r' )+
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2262:6: ( ' ' | '\\t' | '\\n' | '\\r' )+
             int cnt10=0;
             loop10:
             do {
@@ -4344,8 +4344,8 @@ public class CodaLexer extends Lexer {
     public final void mOTHER_CHARS() throws RecognitionException {
         try {
             int _type = OTHER_CHARS;
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2258:2: ( ( ';' | '\"' | '}' | '{' ) )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2258:4: ( ';' | '\"' | '}' | '{' )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2267:2: ( ( ';' | '\"' | '}' | '{' ) )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2267:4: ( ';' | '\"' | '}' | '{' )
             {
             if ( input.LA(1)=='\"'||input.LA(1)==';'||input.LA(1)=='{'||input.LA(1)=='}' ) {
                 input.consume();

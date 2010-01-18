@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 /Users/michaelarace/code/codaserver/src/Coda.g 2010-01-18 13:21:38
+// $ANTLR 3.0.1 /Users/michaelarace/code/codaserver/src/Coda.g 2010-01-18 14:31:58
 
 	package org.codalang.codaserver.language;
 	
@@ -17981,8 +17981,14 @@ public class CodaParser extends Parser {
                           			retval.value = a2.value + ".* "; 
                           		} else if (ex != null) {
                           			retval.value = a2.value + "." + ex.value.toString() + " ";
+                          			if (a1 != null) {
+                      	    			retval.value += " AS " + a1.value + " ";
+                      	    		}
                           		} else {
                           			retval.value = a2.value + "." + input.toString(co.start,co.stop) + " ";
+                          			if (a1 != null) {
+                      	    			retval.value += " AS " + a1.value + " ";
+                      	    		}
                           		}
                           	} else if (co != null) {
                           		retval.value = input.toString(co.start,co.stop) + " ";
@@ -17996,6 +18002,9 @@ public class CodaParser extends Parser {
                           		}
                           	} else {
                           		retval.value = " ";
+                          		if (a1 != null) {
+                          			retval.value += " AS " + a1.value + " ";
+                          		}
                           	}
                           	
                           
@@ -18028,15 +18037,15 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start column
-    // /Users/michaelarace/code/codaserver/src/Coda.g:1993:1: column : dbObject ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2002:1: column : dbObject ;
     public final column_return column() throws RecognitionException {
         column_return retval = new column_return();
         retval.start = input.LT(1);
         int column_StartIndex = input.index();
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 111) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:1994:5: ( dbObject )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:1995:7: dbObject
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2003:5: ( dbObject )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2004:7: dbObject
             {
             pushFollow(FOLLOW_dbObject_in_column8040);
             dbObject();
@@ -18069,7 +18078,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start searchCondition
-    // /Users/michaelarace/code/codaserver/src/Coda.g:1998:1: searchCondition returns [CodaSearchCondition value] : ssc= subSearchCondition (op= ( 'AND' | 'OR' ) ssc= subSearchCondition )* ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2007:1: searchCondition returns [CodaSearchCondition value] : ssc= subSearchCondition (op= ( 'AND' | 'OR' ) ssc= subSearchCondition )* ;
     public final searchCondition_return searchCondition() throws RecognitionException {
         searchCondition_return retval = new searchCondition_return();
         retval.start = input.LT(1);
@@ -18084,8 +18093,8 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 112) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2002:3: (ssc= subSearchCondition (op= ( 'AND' | 'OR' ) ssc= subSearchCondition )* )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2003:5: ssc= subSearchCondition (op= ( 'AND' | 'OR' ) ssc= subSearchCondition )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2011:3: (ssc= subSearchCondition (op= ( 'AND' | 'OR' ) ssc= subSearchCondition )* )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2012:5: ssc= subSearchCondition (op= ( 'AND' | 'OR' ) ssc= subSearchCondition )*
             {
             pushFollow(FOLLOW_subSearchCondition_in_searchCondition8073);
             ssc=subSearchCondition();
@@ -18094,7 +18103,7 @@ public class CodaParser extends Parser {
             if ( backtracking==0 ) {
                subConditions.add(ssc.value);
             }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2003:62: (op= ( 'AND' | 'OR' ) ssc= subSearchCondition )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2012:62: (op= ( 'AND' | 'OR' ) ssc= subSearchCondition )*
             loop231:
             do {
                 int alt231=2;
@@ -18107,7 +18116,7 @@ public class CodaParser extends Parser {
 
                 switch (alt231) {
             	case 1 :
-            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2003:63: op= ( 'AND' | 'OR' ) ssc= subSearchCondition
+            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2012:63: op= ( 'AND' | 'OR' ) ssc= subSearchCondition
             	    {
             	    op=(Token)input.LT(1);
             	    if ( (input.LA(1)>=179 && input.LA(1)<=180) ) {
@@ -18172,7 +18181,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start subSearchCondition
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2009:1: subSearchCondition returns [CodaSubSearchCondition value] : (not= 'NOT' )? ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate ) ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2018:1: subSearchCondition returns [CodaSubSearchCondition value] : (not= 'NOT' )? ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate ) ;
     public final subSearchCondition_return subSearchCondition() throws RecognitionException {
         subSearchCondition_return retval = new subSearchCondition_return();
         retval.start = input.LT(1);
@@ -18185,10 +18194,10 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 113) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2010:5: ( (not= 'NOT' )? ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate ) )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2011:5: (not= 'NOT' )? ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2019:5: ( (not= 'NOT' )? ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate ) )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2020:5: (not= 'NOT' )? ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )
             {
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2011:5: (not= 'NOT' )?
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2020:5: (not= 'NOT' )?
             int alt232=2;
             int LA232_0 = input.LA(1);
 
@@ -18197,7 +18206,7 @@ public class CodaParser extends Parser {
             }
             switch (alt232) {
                 case 1 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2011:6: not= 'NOT'
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2020:6: not= 'NOT'
                     {
                     not=(Token)input.LT(1);
                     match(input,154,FOLLOW_154_in_subSearchCondition8135); if (failed) return retval;
@@ -18207,7 +18216,7 @@ public class CodaParser extends Parser {
 
             }
 
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2011:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2020:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )
             int alt233=2;
             int LA233_0 = input.LA(1);
 
@@ -18226,7 +18235,7 @@ public class CodaParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("2011:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 8, input);
+                            new NoViableAltException("2020:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 8, input);
 
                         throw nvae;
                     }
@@ -18243,7 +18252,7 @@ public class CodaParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("2011:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 9, input);
+                            new NoViableAltException("2020:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 9, input);
 
                         throw nvae;
                     }
@@ -18260,7 +18269,7 @@ public class CodaParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("2011:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 10, input);
+                            new NoViableAltException("2020:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 10, input);
 
                         throw nvae;
                     }
@@ -18277,7 +18286,7 @@ public class CodaParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("2011:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 11, input);
+                            new NoViableAltException("2020:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 11, input);
 
                         throw nvae;
                     }
@@ -18294,7 +18303,7 @@ public class CodaParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("2011:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 12, input);
+                            new NoViableAltException("2020:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 12, input);
 
                         throw nvae;
                     }
@@ -18311,7 +18320,7 @@ public class CodaParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("2011:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 13, input);
+                            new NoViableAltException("2020:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 13, input);
 
                         throw nvae;
                     }
@@ -18328,7 +18337,7 @@ public class CodaParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("2011:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 14, input);
+                            new NoViableAltException("2020:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 14, input);
 
                         throw nvae;
                     }
@@ -18339,7 +18348,7 @@ public class CodaParser extends Parser {
                 else {
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("2011:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 1, input);
+                        new NoViableAltException("2020:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 1, input);
 
                     throw nvae;
                 }
@@ -18350,13 +18359,13 @@ public class CodaParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("2011:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 0, input);
+                    new NoViableAltException("2020:18: ( ( '(' searchCondition ')' )=> '(' sc= searchCondition ')' | pred= predicate )", 233, 0, input);
 
                 throw nvae;
             }
             switch (alt233) {
                 case 1 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2012:10: ( '(' searchCondition ')' )=> '(' sc= searchCondition ')'
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2021:10: ( '(' searchCondition ')' )=> '(' sc= searchCondition ')'
                     {
                     match(input,84,FOLLOW_84_in_subSearchCondition8161); if (failed) return retval;
                     pushFollow(FOLLOW_searchCondition_in_subSearchCondition8165);
@@ -18368,7 +18377,7 @@ public class CodaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2013:11: pred= predicate
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2022:11: pred= predicate
                     {
                     pushFollow(FOLLOW_predicate_in_subSearchCondition8181);
                     pred=predicate();
@@ -18416,7 +18425,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start predicate
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2024:1: predicate returns [CodaPredicate value] : exp1= expression (co= comparisonOperator exp2= expression | 'IS' (not= 'NOT' )? nil= 'NULL' | (not= 'NOT' )? (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' ) | 'CONTAINS' sl= stringLiteral ) ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2033:1: predicate returns [CodaPredicate value] : exp1= expression (co= comparisonOperator exp2= expression | 'IS' (not= 'NOT' )? nil= 'NULL' | (not= 'NOT' )? (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' ) | 'CONTAINS' sl= stringLiteral ) ;
     public final predicate_return predicate() throws RecognitionException {
         predicate_return retval = new predicate_return();
         retval.start = input.LT(1);
@@ -18437,14 +18446,14 @@ public class CodaParser extends Parser {
         RuleReturnScope stl = null;
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 114) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2025:5: (exp1= expression (co= comparisonOperator exp2= expression | 'IS' (not= 'NOT' )? nil= 'NULL' | (not= 'NOT' )? (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' ) | 'CONTAINS' sl= stringLiteral ) )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2027:7: exp1= expression (co= comparisonOperator exp2= expression | 'IS' (not= 'NOT' )? nil= 'NULL' | (not= 'NOT' )? (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' ) | 'CONTAINS' sl= stringLiteral )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2034:5: (exp1= expression (co= comparisonOperator exp2= expression | 'IS' (not= 'NOT' )? nil= 'NULL' | (not= 'NOT' )? (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' ) | 'CONTAINS' sl= stringLiteral ) )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2036:7: exp1= expression (co= comparisonOperator exp2= expression | 'IS' (not= 'NOT' )? nil= 'NULL' | (not= 'NOT' )? (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' ) | 'CONTAINS' sl= stringLiteral )
             {
             pushFollow(FOLLOW_expression_in_predicate8235);
             exp1=expression();
             _fsp--;
             if (failed) return retval;
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2027:23: (co= comparisonOperator exp2= expression | 'IS' (not= 'NOT' )? nil= 'NULL' | (not= 'NOT' )? (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' ) | 'CONTAINS' sl= stringLiteral )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2036:23: (co= comparisonOperator exp2= expression | 'IS' (not= 'NOT' )? nil= 'NULL' | (not= 'NOT' )? (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' ) | 'CONTAINS' sl= stringLiteral )
             int alt238=4;
             switch ( input.LA(1) ) {
             case 99:
@@ -18478,14 +18487,14 @@ public class CodaParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("2027:23: (co= comparisonOperator exp2= expression | 'IS' (not= 'NOT' )? nil= 'NULL' | (not= 'NOT' )? (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' ) | 'CONTAINS' sl= stringLiteral )", 238, 0, input);
+                    new NoViableAltException("2036:23: (co= comparisonOperator exp2= expression | 'IS' (not= 'NOT' )? nil= 'NULL' | (not= 'NOT' )? (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' ) | 'CONTAINS' sl= stringLiteral )", 238, 0, input);
 
                 throw nvae;
             }
 
             switch (alt238) {
                 case 1 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2029:9: co= comparisonOperator exp2= expression
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2038:9: co= comparisonOperator exp2= expression
                     {
                     pushFollow(FOLLOW_comparisonOperator_in_predicate8258);
                     co=comparisonOperator();
@@ -18499,10 +18508,10 @@ public class CodaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2030:9: 'IS' (not= 'NOT' )? nil= 'NULL'
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2039:9: 'IS' (not= 'NOT' )? nil= 'NULL'
                     {
                     match(input,128,FOLLOW_128_in_predicate8273); if (failed) return retval;
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2030:14: (not= 'NOT' )?
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2039:14: (not= 'NOT' )?
                     int alt234=2;
                     int LA234_0 = input.LA(1);
 
@@ -18511,7 +18520,7 @@ public class CodaParser extends Parser {
                     }
                     switch (alt234) {
                         case 1 :
-                            // /Users/michaelarace/code/codaserver/src/Coda.g:2030:15: not= 'NOT'
+                            // /Users/michaelarace/code/codaserver/src/Coda.g:2039:15: not= 'NOT'
                             {
                             not=(Token)input.LT(1);
                             match(input,154,FOLLOW_154_in_predicate8278); if (failed) return retval;
@@ -18527,9 +18536,9 @@ public class CodaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2031:9: (not= 'NOT' )? (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' )
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2040:9: (not= 'NOT' )? (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' )
                     {
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2031:9: (not= 'NOT' )?
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2040:9: (not= 'NOT' )?
                     int alt235=2;
                     int LA235_0 = input.LA(1);
 
@@ -18538,7 +18547,7 @@ public class CodaParser extends Parser {
                     }
                     switch (alt235) {
                         case 1 :
-                            // /Users/michaelarace/code/codaserver/src/Coda.g:2031:10: not= 'NOT'
+                            // /Users/michaelarace/code/codaserver/src/Coda.g:2040:10: not= 'NOT'
                             {
                             not=(Token)input.LT(1);
                             match(input,154,FOLLOW_154_in_predicate8298); if (failed) return retval;
@@ -18548,7 +18557,7 @@ public class CodaParser extends Parser {
 
                     }
 
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2031:22: (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' )
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2040:22: (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' )
                     int alt237=2;
                     int LA237_0 = input.LA(1);
 
@@ -18561,13 +18570,13 @@ public class CodaParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("2031:22: (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' )", 237, 0, input);
+                            new NoViableAltException("2040:22: (li= 'LIKE' exp2= expression | in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')' )", 237, 0, input);
 
                         throw nvae;
                     }
                     switch (alt237) {
                         case 1 :
-                            // /Users/michaelarace/code/codaserver/src/Coda.g:2032:13: li= 'LIKE' exp2= expression
+                            // /Users/michaelarace/code/codaserver/src/Coda.g:2041:13: li= 'LIKE' exp2= expression
                             {
                             li=(Token)input.LT(1);
                             match(input,181,FOLLOW_181_in_predicate8318); if (failed) return retval;
@@ -18579,7 +18588,7 @@ public class CodaParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // /Users/michaelarace/code/codaserver/src/Coda.g:2033:13: in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')'
+                            // /Users/michaelarace/code/codaserver/src/Coda.g:2042:13: in= 'IN' '(' stl+= stringLiteral ( ',' stl+= stringLiteral )* ')'
                             {
                             in=(Token)input.LT(1);
                             match(input,78,FOLLOW_78_in_predicate8339); if (failed) return retval;
@@ -18591,7 +18600,7 @@ public class CodaParser extends Parser {
                             if (list_stl==null) list_stl=new ArrayList();
                             list_stl.add(stl.getTemplate());
 
-                            // /Users/michaelarace/code/codaserver/src/Coda.g:2033:44: ( ',' stl+= stringLiteral )*
+                            // /Users/michaelarace/code/codaserver/src/Coda.g:2042:44: ( ',' stl+= stringLiteral )*
                             loop236:
                             do {
                                 int alt236=2;
@@ -18604,7 +18613,7 @@ public class CodaParser extends Parser {
 
                                 switch (alt236) {
                             	case 1 :
-                            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2033:45: ',' stl+= stringLiteral
+                            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2042:45: ',' stl+= stringLiteral
                             	    {
                             	    match(input,85,FOLLOW_85_in_predicate8348); if (failed) return retval;
                             	    pushFollow(FOLLOW_stringLiteral_in_predicate8352);
@@ -18634,7 +18643,7 @@ public class CodaParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2035:9: 'CONTAINS' sl= stringLiteral
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2044:9: 'CONTAINS' sl= stringLiteral
                     {
                     match(input,182,FOLLOW_182_in_predicate8378); if (failed) return retval;
                     pushFollow(FOLLOW_stringLiteral_in_predicate8382);
@@ -18688,14 +18697,14 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start comparisonOperator
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2051:1: comparisonOperator : ( '=' | '<>' | '<=' | '!=' | '<' | '>=' | '>' );
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2060:1: comparisonOperator : ( '=' | '<>' | '<=' | '!=' | '<' | '>=' | '>' );
     public final comparisonOperator_return comparisonOperator() throws RecognitionException {
         comparisonOperator_return retval = new comparisonOperator_return();
         retval.start = input.LT(1);
         int comparisonOperator_StartIndex = input.index();
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 115) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2052:5: ( '=' | '<>' | '<=' | '!=' | '<' | '>=' | '>' )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2061:5: ( '=' | '<>' | '<=' | '!=' | '<' | '>=' | '>' )
             // /Users/michaelarace/code/codaserver/src/Coda.g:
             {
             if ( input.LA(1)==99||(input.LA(1)>=183 && input.LA(1)<=188) ) {
@@ -18736,7 +18745,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start expression
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2056:1: expression returns [CodaExpression value] : sube= subExpression (ae= arithmeticOperator sube= subExpression )* ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2065:1: expression returns [CodaExpression value] : sube= subExpression (ae= arithmeticOperator sube= subExpression )* ;
     public final expression_return expression() throws RecognitionException {
         expression_return retval = new expression_return();
         retval.start = input.LT(1);
@@ -18752,8 +18761,8 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 116) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2061:5: (sube= subExpression (ae= arithmeticOperator sube= subExpression )* )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2062:7: sube= subExpression (ae= arithmeticOperator sube= subExpression )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2070:5: (sube= subExpression (ae= arithmeticOperator sube= subExpression )* )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2071:7: sube= subExpression (ae= arithmeticOperator sube= subExpression )*
             {
             pushFollow(FOLLOW_subExpression_in_expression8484);
             sube=subExpression();
@@ -18762,7 +18771,7 @@ public class CodaParser extends Parser {
             if ( backtracking==0 ) {
               subExpressions.add(sube.value);
             }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2062:61: (ae= arithmeticOperator sube= subExpression )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2071:61: (ae= arithmeticOperator sube= subExpression )*
             loop239:
             do {
                 int alt239=2;
@@ -18775,7 +18784,7 @@ public class CodaParser extends Parser {
 
                 switch (alt239) {
             	case 1 :
-            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2062:62: ae= arithmeticOperator sube= subExpression
+            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2071:62: ae= arithmeticOperator sube= subExpression
             	    {
             	    pushFollow(FOLLOW_arithmeticOperator_in_expression8491);
             	    ae=arithmeticOperator();
@@ -18832,7 +18841,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start subExpression
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2068:1: subExpression returns [CodaSubExpression value] : (uo= unaryOperator )? ( ( function )=>funct= function | '(' exp= expression ')' | ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject | con= constant ) ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2077:1: subExpression returns [CodaSubExpression value] : (uo= unaryOperator )? ( ( function )=>funct= function | '(' exp= expression ')' | ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject | con= constant ) ;
     public final subExpression_return subExpression() throws RecognitionException {
         subExpression_return retval = new subExpression_return();
         retval.start = input.LT(1);
@@ -18852,10 +18861,10 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 117) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2069:5: ( (uo= unaryOperator )? ( ( function )=>funct= function | '(' exp= expression ')' | ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject | con= constant ) )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2070:5: (uo= unaryOperator )? ( ( function )=>funct= function | '(' exp= expression ')' | ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject | con= constant )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2078:5: ( (uo= unaryOperator )? ( ( function )=>funct= function | '(' exp= expression ')' | ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject | con= constant ) )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2079:5: (uo= unaryOperator )? ( ( function )=>funct= function | '(' exp= expression ')' | ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject | con= constant )
             {
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2070:5: (uo= unaryOperator )?
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2079:5: (uo= unaryOperator )?
             int alt240=2;
             int LA240_0 = input.LA(1);
 
@@ -18864,7 +18873,7 @@ public class CodaParser extends Parser {
             }
             switch (alt240) {
                 case 1 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2070:6: uo= unaryOperator
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2079:6: uo= unaryOperator
                     {
                     pushFollow(FOLLOW_unaryOperator_in_subExpression8538);
                     uo=unaryOperator();
@@ -18876,7 +18885,7 @@ public class CodaParser extends Parser {
 
             }
 
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2071:5: ( ( function )=>funct= function | '(' exp= expression ')' | ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject | con= constant )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2080:5: ( ( function )=>funct= function | '(' exp= expression ')' | ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject | con= constant )
             int alt242=4;
             switch ( input.LA(1) ) {
             case ObjectName:
@@ -18967,7 +18976,7 @@ public class CodaParser extends Parser {
                 else {
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("2071:5: ( ( function )=>funct= function | '(' exp= expression ')' | ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject | con= constant )", 242, 1, input);
+                        new NoViableAltException("2080:5: ( ( function )=>funct= function | '(' exp= expression ')' | ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject | con= constant )", 242, 1, input);
 
                     throw nvae;
                 }
@@ -19117,7 +19126,7 @@ public class CodaParser extends Parser {
                 else {
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("2071:5: ( ( function )=>funct= function | '(' exp= expression ')' | ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject | con= constant )", 242, 2, input);
+                        new NoViableAltException("2080:5: ( ( function )=>funct= function | '(' exp= expression ')' | ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject | con= constant )", 242, 2, input);
 
                     throw nvae;
                 }
@@ -19142,14 +19151,14 @@ public class CodaParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("2071:5: ( ( function )=>funct= function | '(' exp= expression ')' | ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject | con= constant )", 242, 0, input);
+                    new NoViableAltException("2080:5: ( ( function )=>funct= function | '(' exp= expression ')' | ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject | con= constant )", 242, 0, input);
 
                 throw nvae;
             }
 
             switch (alt242) {
                 case 1 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2072:7: ( function )=>funct= function
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2081:7: ( function )=>funct= function
                     {
                     pushFollow(FOLLOW_function_in_subExpression8562);
                     funct=function();
@@ -19159,7 +19168,7 @@ public class CodaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2073:7: '(' exp= expression ')'
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2082:7: '(' exp= expression ')'
                     {
                     match(input,84,FOLLOW_84_in_subExpression8570); if (failed) return retval;
                     pushFollow(FOLLOW_expression_in_subExpression8574);
@@ -19171,9 +19180,9 @@ public class CodaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2074:7: ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2083:7: ( ( alias2 )? dbObject )=> (al= alias2 )? obj= dbObject
                     {
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2074:31: (al= alias2 )?
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2083:31: (al= alias2 )?
                     int alt241=2;
                     int LA241_0 = input.LA(1);
 
@@ -19193,7 +19202,7 @@ public class CodaParser extends Parser {
                     }
                     switch (alt241) {
                         case 1 :
-                            // /Users/michaelarace/code/codaserver/src/Coda.g:2074:32: al= alias2
+                            // /Users/michaelarace/code/codaserver/src/Coda.g:2083:32: al= alias2
                             {
                             pushFollow(FOLLOW_alias2_in_subExpression8598);
                             al=alias2();
@@ -19213,7 +19222,7 @@ public class CodaParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2075:8: con= constant
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2084:8: con= constant
                     {
                     pushFollow(FOLLOW_constant_in_subExpression8618);
                     con=constant();
@@ -19265,7 +19274,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start function
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2091:1: function returns [CodaFunction value] : fn= dbObject '(' (ex= expression ( ',' ex= expression )* | st1= '*' | agg= ( 'ALL' | 'DISTINCT' ) (st2= '*' | ex2= expression ) )? ')' ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2100:1: function returns [CodaFunction value] : fn= dbObject '(' (ex= expression ( ',' ex= expression )* | st1= '*' | agg= ( 'ALL' | 'DISTINCT' ) (st2= '*' | ex2= expression ) )? ')' ;
     public final function_return function() throws RecognitionException {
         function_return retval = new function_return();
         retval.start = input.LT(1);
@@ -19285,15 +19294,15 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 118) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2095:5: (fn= dbObject '(' (ex= expression ( ',' ex= expression )* | st1= '*' | agg= ( 'ALL' | 'DISTINCT' ) (st2= '*' | ex2= expression ) )? ')' )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2096:5: fn= dbObject '(' (ex= expression ( ',' ex= expression )* | st1= '*' | agg= ( 'ALL' | 'DISTINCT' ) (st2= '*' | ex2= expression ) )? ')'
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2104:5: (fn= dbObject '(' (ex= expression ( ',' ex= expression )* | st1= '*' | agg= ( 'ALL' | 'DISTINCT' ) (st2= '*' | ex2= expression ) )? ')' )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2105:5: fn= dbObject '(' (ex= expression ( ',' ex= expression )* | st1= '*' | agg= ( 'ALL' | 'DISTINCT' ) (st2= '*' | ex2= expression ) )? ')'
             {
             pushFollow(FOLLOW_dbObject_in_function8663);
             fn=dbObject();
             _fsp--;
             if (failed) return retval;
             match(input,84,FOLLOW_84_in_function8665); if (failed) return retval;
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2096:21: (ex= expression ( ',' ex= expression )* | st1= '*' | agg= ( 'ALL' | 'DISTINCT' ) (st2= '*' | ex2= expression ) )?
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2105:21: (ex= expression ( ',' ex= expression )* | st1= '*' | agg= ( 'ALL' | 'DISTINCT' ) (st2= '*' | ex2= expression ) )?
             int alt245=4;
             switch ( input.LA(1) ) {
                 case ObjectName:
@@ -19384,7 +19393,7 @@ public class CodaParser extends Parser {
 
             switch (alt245) {
                 case 1 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2097:11: ex= expression ( ',' ex= expression )*
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2106:11: ex= expression ( ',' ex= expression )*
                     {
                     pushFollow(FOLLOW_expression_in_function8681);
                     ex=expression();
@@ -19393,7 +19402,7 @@ public class CodaParser extends Parser {
                     if ( backtracking==0 ) {
                        expressions.add(ex.value); 
                     }
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2097:57: ( ',' ex= expression )*
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2106:57: ( ',' ex= expression )*
                     loop243:
                     do {
                         int alt243=2;
@@ -19406,7 +19415,7 @@ public class CodaParser extends Parser {
 
                         switch (alt243) {
                     	case 1 :
-                    	    // /Users/michaelarace/code/codaserver/src/Coda.g:2097:58: ',' ex= expression
+                    	    // /Users/michaelarace/code/codaserver/src/Coda.g:2106:58: ',' ex= expression
                     	    {
                     	    match(input,85,FOLLOW_85_in_function8686); if (failed) return retval;
                     	    pushFollow(FOLLOW_expression_in_function8690);
@@ -19429,7 +19438,7 @@ public class CodaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2098:11: st1= '*'
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2107:11: st1= '*'
                     {
                     st1=(Token)input.LT(1);
                     match(input,178,FOLLOW_178_in_function8708); if (failed) return retval;
@@ -19437,7 +19446,7 @@ public class CodaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2099:11: agg= ( 'ALL' | 'DISTINCT' ) (st2= '*' | ex2= expression )
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2108:11: agg= ( 'ALL' | 'DISTINCT' ) (st2= '*' | ex2= expression )
                     {
                     agg=(Token)input.LT(1);
                     if ( input.LA(1)==176||input.LA(1)==189 ) {
@@ -19451,7 +19460,7 @@ public class CodaParser extends Parser {
                         recoverFromMismatchedSet(input,mse,FOLLOW_set_in_function8726);    throw mse;
                     }
 
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2099:36: (st2= '*' | ex2= expression )
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2108:36: (st2= '*' | ex2= expression )
                     int alt244=2;
                     int LA244_0 = input.LA(1);
 
@@ -19464,13 +19473,13 @@ public class CodaParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("2099:36: (st2= '*' | ex2= expression )", 244, 0, input);
+                            new NoViableAltException("2108:36: (st2= '*' | ex2= expression )", 244, 0, input);
 
                         throw nvae;
                     }
                     switch (alt244) {
                         case 1 :
-                            // /Users/michaelarace/code/codaserver/src/Coda.g:2099:37: st2= '*'
+                            // /Users/michaelarace/code/codaserver/src/Coda.g:2108:37: st2= '*'
                             {
                             st2=(Token)input.LT(1);
                             match(input,178,FOLLOW_178_in_function8737); if (failed) return retval;
@@ -19478,7 +19487,7 @@ public class CodaParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // /Users/michaelarace/code/codaserver/src/Coda.g:2099:47: ex2= expression
+                            // /Users/michaelarace/code/codaserver/src/Coda.g:2108:47: ex2= expression
                             {
                             pushFollow(FOLLOW_expression_in_function8743);
                             ex2=expression();
@@ -19534,15 +19543,15 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start dbObject
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2113:1: dbObject : objectName ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2122:1: dbObject : objectName ;
     public final dbObject_return dbObject() throws RecognitionException {
         dbObject_return retval = new dbObject_return();
         retval.start = input.LT(1);
         int dbObject_StartIndex = input.index();
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 119) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2114:2: ( objectName )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2114:4: objectName
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2123:2: ( objectName )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2123:4: objectName
             {
             pushFollow(FOLLOW_objectName_in_dbObject8787);
             objectName();
@@ -19575,7 +19584,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start stringLiteral
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2122:1: stringLiteral returns [String value] : v= ( UnicodeStringLiteral | ASCIIStringLiteral ) ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2131:1: stringLiteral returns [String value] : v= ( UnicodeStringLiteral | ASCIIStringLiteral ) ;
     public final stringLiteral_return stringLiteral() throws RecognitionException {
         stringLiteral_return retval = new stringLiteral_return();
         retval.start = input.LT(1);
@@ -19584,8 +19593,8 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 120) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2123:5: (v= ( UnicodeStringLiteral | ASCIIStringLiteral ) )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2124:8: v= ( UnicodeStringLiteral | ASCIIStringLiteral )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2132:5: (v= ( UnicodeStringLiteral | ASCIIStringLiteral ) )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2133:8: v= ( UnicodeStringLiteral | ASCIIStringLiteral )
             {
             v=(Token)input.LT(1);
             if ( (input.LA(1)>=UnicodeStringLiteral && input.LA(1)<=ASCIIStringLiteral) ) {
@@ -19631,7 +19640,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start constant
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2129:1: constant returns [CodaConstant value] : (n= 'NULL' | sl= stringLiteral | sv= systemVariable ) ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2138:1: constant returns [CodaConstant value] : (n= 'NULL' | sl= stringLiteral | sv= systemVariable ) ;
     public final constant_return constant() throws RecognitionException {
         constant_return retval = new constant_return();
         retval.start = input.LT(1);
@@ -19644,10 +19653,10 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 121) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2130:5: ( (n= 'NULL' | sl= stringLiteral | sv= systemVariable ) )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2130:7: (n= 'NULL' | sl= stringLiteral | sv= systemVariable )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2139:5: ( (n= 'NULL' | sl= stringLiteral | sv= systemVariable ) )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2139:7: (n= 'NULL' | sl= stringLiteral | sv= systemVariable )
             {
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2130:7: (n= 'NULL' | sl= stringLiteral | sv= systemVariable )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2139:7: (n= 'NULL' | sl= stringLiteral | sv= systemVariable )
             int alt246=3;
             switch ( input.LA(1) ) {
             case 153:
@@ -19672,14 +19681,14 @@ public class CodaParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("2130:7: (n= 'NULL' | sl= stringLiteral | sv= systemVariable )", 246, 0, input);
+                    new NoViableAltException("2139:7: (n= 'NULL' | sl= stringLiteral | sv= systemVariable )", 246, 0, input);
 
                 throw nvae;
             }
 
             switch (alt246) {
                 case 1 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2130:8: n= 'NULL'
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2139:8: n= 'NULL'
                     {
                     n=(Token)input.LT(1);
                     match(input,153,FOLLOW_153_in_constant8860); if (failed) return retval;
@@ -19687,7 +19696,7 @@ public class CodaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2130:19: sl= stringLiteral
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2139:19: sl= stringLiteral
                     {
                     pushFollow(FOLLOW_stringLiteral_in_constant8866);
                     sl=stringLiteral();
@@ -19697,7 +19706,7 @@ public class CodaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2130:38: sv= systemVariable
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2139:38: sv= systemVariable
                     {
                     pushFollow(FOLLOW_systemVariable_in_constant8872);
                     sv=systemVariable();
@@ -19755,7 +19764,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start unaryOperator
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2150:1: unaryOperator returns [String operator] : op= ( '+' | '-' | '~' ) ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2159:1: unaryOperator returns [String operator] : op= ( '+' | '-' | '~' ) ;
     public final unaryOperator_return unaryOperator() throws RecognitionException {
         unaryOperator_return retval = new unaryOperator_return();
         retval.start = input.LT(1);
@@ -19764,8 +19773,8 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 122) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2151:5: (op= ( '+' | '-' | '~' ) )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2151:7: op= ( '+' | '-' | '~' )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2160:5: (op= ( '+' | '-' | '~' ) )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2160:7: op= ( '+' | '-' | '~' )
             {
             op=(Token)input.LT(1);
             if ( (input.LA(1)>=190 && input.LA(1)<=192) ) {
@@ -19811,7 +19820,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start arithmeticOperator
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2157:1: arithmeticOperator returns [String operator] : op= ( '+' | '-' | '*' | '/' | '%' ) ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2166:1: arithmeticOperator returns [String operator] : op= ( '+' | '-' | '*' | '/' | '%' ) ;
     public final arithmeticOperator_return arithmeticOperator() throws RecognitionException {
         arithmeticOperator_return retval = new arithmeticOperator_return();
         retval.start = input.LT(1);
@@ -19820,8 +19829,8 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 123) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2158:5: (op= ( '+' | '-' | '*' | '/' | '%' ) )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2158:7: op= ( '+' | '-' | '*' | '/' | '%' )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2167:5: (op= ( '+' | '-' | '*' | '/' | '%' ) )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2167:7: op= ( '+' | '-' | '*' | '/' | '%' )
             {
             op=(Token)input.LT(1);
             if ( input.LA(1)==178||(input.LA(1)>=190 && input.LA(1)<=191)||(input.LA(1)>=193 && input.LA(1)<=194) ) {
@@ -19866,14 +19875,14 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start systemVariable
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2163:1: systemVariable : ( 'CURRENT_TIMESTAMP' | 'CURRENT_USER_ID' | 'CURRENT_GROUP_NAME' | 'CURRENT_USERNAME' );
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2172:1: systemVariable : ( 'CURRENT_TIMESTAMP' | 'CURRENT_USER_ID' | 'CURRENT_GROUP_NAME' | 'CURRENT_USERNAME' );
     public final systemVariable_return systemVariable() throws RecognitionException {
         systemVariable_return retval = new systemVariable_return();
         retval.start = input.LT(1);
         int systemVariable_StartIndex = input.index();
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 124) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2164:6: ( 'CURRENT_TIMESTAMP' | 'CURRENT_USER_ID' | 'CURRENT_GROUP_NAME' | 'CURRENT_USERNAME' )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2173:6: ( 'CURRENT_TIMESTAMP' | 'CURRENT_USER_ID' | 'CURRENT_GROUP_NAME' | 'CURRENT_USERNAME' )
             // /Users/michaelarace/code/codaserver/src/Coda.g:
             {
             if ( (input.LA(1)>=195 && input.LA(1)<=198) ) {
@@ -19914,7 +19923,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start orderByClause
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2166:1: orderByClause returns [CodaOrderByClause value] : 'ORDER' 'BY' exp= expression ( 'ASC' | des= 'DESC' )? ( ',' exp= expression ( 'ASC' | des= 'DESC' )? )* ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2175:1: orderByClause returns [CodaOrderByClause value] : 'ORDER' 'BY' exp= expression ( 'ASC' | des= 'DESC' )? ( ',' exp= expression ( 'ASC' | des= 'DESC' )? )* ;
     public final orderByClause_return orderByClause() throws RecognitionException {
         orderByClause_return retval = new orderByClause_return();
         retval.start = input.LT(1);
@@ -19929,8 +19938,8 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 125) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2171:5: ( 'ORDER' 'BY' exp= expression ( 'ASC' | des= 'DESC' )? ( ',' exp= expression ( 'ASC' | des= 'DESC' )? )* )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2171:7: 'ORDER' 'BY' exp= expression ( 'ASC' | des= 'DESC' )? ( ',' exp= expression ( 'ASC' | des= 'DESC' )? )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2180:5: ( 'ORDER' 'BY' exp= expression ( 'ASC' | des= 'DESC' )? ( ',' exp= expression ( 'ASC' | des= 'DESC' )? )* )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2180:7: 'ORDER' 'BY' exp= expression ( 'ASC' | des= 'DESC' )? ( ',' exp= expression ( 'ASC' | des= 'DESC' )? )*
             {
             match(input,124,FOLLOW_124_in_orderByClause9028); if (failed) return retval;
             match(input,96,FOLLOW_96_in_orderByClause9030); if (failed) return retval;
@@ -19941,7 +19950,7 @@ public class CodaParser extends Parser {
             if ( backtracking==0 ) {
               expressions.add(exp.value); des = null; 
             }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2171:79: ( 'ASC' | des= 'DESC' )?
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2180:79: ( 'ASC' | des= 'DESC' )?
             int alt247=3;
             int LA247_0 = input.LA(1);
 
@@ -19953,14 +19962,14 @@ public class CodaParser extends Parser {
             }
             switch (alt247) {
                 case 1 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2171:80: 'ASC'
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2180:80: 'ASC'
                     {
                     match(input,199,FOLLOW_199_in_orderByClause9039); if (failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2171:88: des= 'DESC'
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2180:88: des= 'DESC'
                     {
                     des=(Token)input.LT(1);
                     match(input,200,FOLLOW_200_in_orderByClause9045); if (failed) return retval;
@@ -19973,7 +19982,7 @@ public class CodaParser extends Parser {
             if ( backtracking==0 ) {
               directions.add(des == null ? "ASC" : "DESC");
             }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2171:149: ( ',' exp= expression ( 'ASC' | des= 'DESC' )? )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2180:149: ( ',' exp= expression ( 'ASC' | des= 'DESC' )? )*
             loop249:
             do {
                 int alt249=2;
@@ -19986,7 +19995,7 @@ public class CodaParser extends Parser {
 
                 switch (alt249) {
             	case 1 :
-            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2171:150: ',' exp= expression ( 'ASC' | des= 'DESC' )?
+            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2180:150: ',' exp= expression ( 'ASC' | des= 'DESC' )?
             	    {
             	    match(input,85,FOLLOW_85_in_orderByClause9052); if (failed) return retval;
             	    pushFollow(FOLLOW_expression_in_orderByClause9056);
@@ -19996,7 +20005,7 @@ public class CodaParser extends Parser {
             	    if ( backtracking==0 ) {
             	      expressions.add(exp.value); des = null; 
             	    }
-            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2171:213: ( 'ASC' | des= 'DESC' )?
+            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2180:213: ( 'ASC' | des= 'DESC' )?
             	    int alt248=3;
             	    int LA248_0 = input.LA(1);
 
@@ -20008,14 +20017,14 @@ public class CodaParser extends Parser {
             	    }
             	    switch (alt248) {
             	        case 1 :
-            	            // /Users/michaelarace/code/codaserver/src/Coda.g:2171:214: 'ASC'
+            	            // /Users/michaelarace/code/codaserver/src/Coda.g:2180:214: 'ASC'
             	            {
             	            match(input,199,FOLLOW_199_in_orderByClause9061); if (failed) return retval;
 
             	            }
             	            break;
             	        case 2 :
-            	            // /Users/michaelarace/code/codaserver/src/Coda.g:2171:222: des= 'DESC'
+            	            // /Users/michaelarace/code/codaserver/src/Coda.g:2180:222: des= 'DESC'
             	            {
             	            des=(Token)input.LT(1);
             	            match(input,200,FOLLOW_200_in_orderByClause9067); if (failed) return retval;
@@ -20069,7 +20078,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start groupByClause
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2177:1: groupByClause returns [CodaGroupByClause value] : 'GROUP' 'BY' (al= 'ALL' )? ex= expression ( ',' ex= expression )* ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2186:1: groupByClause returns [CodaGroupByClause value] : 'GROUP' 'BY' (al= 'ALL' )? ex= expression ( ',' ex= expression )* ;
     public final groupByClause_return groupByClause() throws RecognitionException {
         groupByClause_return retval = new groupByClause_return();
         retval.start = input.LT(1);
@@ -20083,12 +20092,12 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 126) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2181:5: ( 'GROUP' 'BY' (al= 'ALL' )? ex= expression ( ',' ex= expression )* )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2181:7: 'GROUP' 'BY' (al= 'ALL' )? ex= expression ( ',' ex= expression )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2190:5: ( 'GROUP' 'BY' (al= 'ALL' )? ex= expression ( ',' ex= expression )* )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2190:7: 'GROUP' 'BY' (al= 'ALL' )? ex= expression ( ',' ex= expression )*
             {
             match(input,79,FOLLOW_79_in_groupByClause9106); if (failed) return retval;
             match(input,96,FOLLOW_96_in_groupByClause9108); if (failed) return retval;
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2181:20: (al= 'ALL' )?
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2190:20: (al= 'ALL' )?
             int alt250=2;
             int LA250_0 = input.LA(1);
 
@@ -20097,7 +20106,7 @@ public class CodaParser extends Parser {
             }
             switch (alt250) {
                 case 1 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2181:21: al= 'ALL'
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2190:21: al= 'ALL'
                     {
                     al=(Token)input.LT(1);
                     match(input,189,FOLLOW_189_in_groupByClause9113); if (failed) return retval;
@@ -20114,7 +20123,7 @@ public class CodaParser extends Parser {
             if ( backtracking==0 ) {
               expressions.add(ex.value); 
             }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2181:77: ( ',' ex= expression )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2190:77: ( ',' ex= expression )*
             loop251:
             do {
                 int alt251=2;
@@ -20127,7 +20136,7 @@ public class CodaParser extends Parser {
 
                 switch (alt251) {
             	case 1 :
-            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2181:78: ',' ex= expression
+            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2190:78: ',' ex= expression
             	    {
             	    match(input,85,FOLLOW_85_in_groupByClause9124); if (failed) return retval;
             	    pushFollow(FOLLOW_expression_in_groupByClause9128);
@@ -20178,7 +20187,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start havingClause
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2187:1: havingClause returns [CodaHavingClause value] : 'HAVING' sc= searchCondition ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2196:1: havingClause returns [CodaHavingClause value] : 'HAVING' sc= searchCondition ;
     public final havingClause_return havingClause() throws RecognitionException {
         havingClause_return retval = new havingClause_return();
         retval.start = input.LT(1);
@@ -20188,8 +20197,8 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 127) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2188:5: ( 'HAVING' sc= searchCondition )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2188:7: 'HAVING' sc= searchCondition
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2197:5: ( 'HAVING' sc= searchCondition )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2197:7: 'HAVING' sc= searchCondition
             {
             match(input,201,FOLLOW_201_in_havingClause9160); if (failed) return retval;
             pushFollow(FOLLOW_searchCondition_in_havingClause9164);
@@ -20228,7 +20237,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start triggerBody
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2194:1: triggerBody returns [String groovy] : (t=~ ( 'ENDTRIGGER' ) )* ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2203:1: triggerBody returns [String groovy] : (t=~ ( 'ENDTRIGGER' ) )* ;
     public final triggerBody_return triggerBody() throws RecognitionException {
         triggerBody_return retval = new triggerBody_return();
         retval.start = input.LT(1);
@@ -20241,10 +20250,10 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 128) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2199:2: ( (t=~ ( 'ENDTRIGGER' ) )* )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2199:4: (t=~ ( 'ENDTRIGGER' ) )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2208:2: ( (t=~ ( 'ENDTRIGGER' ) )* )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2208:4: (t=~ ( 'ENDTRIGGER' ) )*
             {
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2199:4: (t=~ ( 'ENDTRIGGER' ) )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2208:4: (t=~ ( 'ENDTRIGGER' ) )*
             loop252:
             do {
                 int alt252=2;
@@ -20257,7 +20266,7 @@ public class CodaParser extends Parser {
 
                 switch (alt252) {
             	case 1 :
-            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2199:5: t=~ ( 'ENDTRIGGER' )
+            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2208:5: t=~ ( 'ENDTRIGGER' )
             	    {
             	    t=(Token)input.LT(1);
             	    if ( (input.LA(1)>=ObjectName && input.LA(1)<=138)||(input.LA(1)>=140 && input.LA(1)<=205) ) {
@@ -20310,7 +20319,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start procedureBody
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2201:1: procedureBody returns [String groovy] : (p=~ ( 'ENDPROCEDURE' ) )* ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2210:1: procedureBody returns [String groovy] : (p=~ ( 'ENDPROCEDURE' ) )* ;
     public final procedureBody_return procedureBody() throws RecognitionException {
         procedureBody_return retval = new procedureBody_return();
         retval.start = input.LT(1);
@@ -20323,10 +20332,10 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 129) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2206:2: ( (p=~ ( 'ENDPROCEDURE' ) )* )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2206:4: (p=~ ( 'ENDPROCEDURE' ) )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2215:2: ( (p=~ ( 'ENDPROCEDURE' ) )* )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2215:4: (p=~ ( 'ENDPROCEDURE' ) )*
             {
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2206:4: (p=~ ( 'ENDPROCEDURE' ) )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2215:4: (p=~ ( 'ENDPROCEDURE' ) )*
             loop253:
             do {
                 int alt253=2;
@@ -20339,7 +20348,7 @@ public class CodaParser extends Parser {
 
                 switch (alt253) {
             	case 1 :
-            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2206:5: p=~ ( 'ENDPROCEDURE' )
+            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2215:5: p=~ ( 'ENDPROCEDURE' )
             	    {
             	    p=(Token)input.LT(1);
             	    if ( (input.LA(1)>=ObjectName && input.LA(1)<=141)||(input.LA(1)>=143 && input.LA(1)<=205) ) {
@@ -20391,17 +20400,17 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start rawSQLBody
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2209:1: rawSQLBody : (~ EOF )* ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2218:1: rawSQLBody : (~ EOF )* ;
     public final rawSQLBody_return rawSQLBody() throws RecognitionException {
         rawSQLBody_return retval = new rawSQLBody_return();
         retval.start = input.LT(1);
         int rawSQLBody_StartIndex = input.index();
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 130) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2209:12: ( (~ EOF )* )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2209:14: (~ EOF )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2218:12: ( (~ EOF )* )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2218:14: (~ EOF )*
             {
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2209:14: (~ EOF )*
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2218:14: (~ EOF )*
             loop254:
             do {
                 int alt254=2;
@@ -20414,7 +20423,7 @@ public class CodaParser extends Parser {
 
                 switch (alt254) {
             	case 1 :
-            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2209:15: ~ EOF
+            	    // /Users/michaelarace/code/codaserver/src/Coda.g:2218:15: ~ EOF
             	    {
             	    if ( (input.LA(1)>=ObjectName && input.LA(1)<=205) ) {
             	        input.consume();
@@ -20463,7 +20472,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start tablePermission
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2211:1: tablePermission returns [String perm] : p= ( 'SELECT' | 'INSERT' | 'UPDATE' | 'DELETE' ) ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2220:1: tablePermission returns [String perm] : p= ( 'SELECT' | 'INSERT' | 'UPDATE' | 'DELETE' ) ;
     public final tablePermission_return tablePermission() throws RecognitionException {
         tablePermission_return retval = new tablePermission_return();
         retval.start = input.LT(1);
@@ -20472,8 +20481,8 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 131) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2212:2: (p= ( 'SELECT' | 'INSERT' | 'UPDATE' | 'DELETE' ) )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2212:4: p= ( 'SELECT' | 'INSERT' | 'UPDATE' | 'DELETE' )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2221:2: (p= ( 'SELECT' | 'INSERT' | 'UPDATE' | 'DELETE' ) )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2221:4: p= ( 'SELECT' | 'INSERT' | 'UPDATE' | 'DELETE' )
             {
             p=(Token)input.LT(1);
             if ( (input.LA(1)>=69 && input.LA(1)<=71)||input.LA(1)==134 ) {
@@ -20519,7 +20528,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start formStatusPermission
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2217:1: formStatusPermission returns [String perm] : p= ( 'VIEW' | 'CALL' | 'UPDATE' ) ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2226:1: formStatusPermission returns [String perm] : p= ( 'VIEW' | 'CALL' | 'UPDATE' ) ;
     public final formStatusPermission_return formStatusPermission() throws RecognitionException {
         formStatusPermission_return retval = new formStatusPermission_return();
         retval.start = input.LT(1);
@@ -20528,8 +20537,8 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 132) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2218:2: (p= ( 'VIEW' | 'CALL' | 'UPDATE' ) )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2218:4: p= ( 'VIEW' | 'CALL' | 'UPDATE' )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2227:2: (p= ( 'VIEW' | 'CALL' | 'UPDATE' ) )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2227:4: p= ( 'VIEW' | 'CALL' | 'UPDATE' )
             {
             p=(Token)input.LT(1);
             if ( input.LA(1)==70||(input.LA(1)>=202 && input.LA(1)<=203) ) {
@@ -20575,7 +20584,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start procedurePermission
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2223:1: procedurePermission returns [String perm] : p= 'EXECUTE' ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2232:1: procedurePermission returns [String perm] : p= 'EXECUTE' ;
     public final procedurePermission_return procedurePermission() throws RecognitionException {
         procedurePermission_return retval = new procedurePermission_return();
         retval.start = input.LT(1);
@@ -20584,8 +20593,8 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 133) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2224:2: (p= 'EXECUTE' )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2224:4: p= 'EXECUTE'
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2233:2: (p= 'EXECUTE' )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2233:4: p= 'EXECUTE'
             {
             p=(Token)input.LT(1);
             match(input,204,FOLLOW_204_in_procedurePermission9329); if (failed) return retval;
@@ -20621,7 +20630,7 @@ public class CodaParser extends Parser {
     };
 
     // $ANTLR start cronValue
-    // /Users/michaelarace/code/codaserver/src/Coda.g:2229:1: cronValue returns [String value] : (num= Integer ( ( ',' | '-' | '/' ) num= Integer )* | star= '*' | quest= '?' ) ;
+    // /Users/michaelarace/code/codaserver/src/Coda.g:2238:1: cronValue returns [String value] : (num= Integer ( ( ',' | '-' | '/' ) num= Integer )* | star= '*' | quest= '?' ) ;
     public final cronValue_return cronValue() throws RecognitionException {
         cronValue_return retval = new cronValue_return();
         retval.start = input.LT(1);
@@ -20635,10 +20644,10 @@ public class CodaParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 134) ) { return retval; }
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2233:2: ( (num= Integer ( ( ',' | '-' | '/' ) num= Integer )* | star= '*' | quest= '?' ) )
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2233:4: (num= Integer ( ( ',' | '-' | '/' ) num= Integer )* | star= '*' | quest= '?' )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2242:2: ( (num= Integer ( ( ',' | '-' | '/' ) num= Integer )* | star= '*' | quest= '?' ) )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2242:4: (num= Integer ( ( ',' | '-' | '/' ) num= Integer )* | star= '*' | quest= '?' )
             {
-            // /Users/michaelarace/code/codaserver/src/Coda.g:2233:4: (num= Integer ( ( ',' | '-' | '/' ) num= Integer )* | star= '*' | quest= '?' )
+            // /Users/michaelarace/code/codaserver/src/Coda.g:2242:4: (num= Integer ( ( ',' | '-' | '/' ) num= Integer )* | star= '*' | quest= '?' )
             int alt256=3;
             switch ( input.LA(1) ) {
             case Integer:
@@ -20659,21 +20668,21 @@ public class CodaParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("2233:4: (num= Integer ( ( ',' | '-' | '/' ) num= Integer )* | star= '*' | quest= '?' )", 256, 0, input);
+                    new NoViableAltException("2242:4: (num= Integer ( ( ',' | '-' | '/' ) num= Integer )* | star= '*' | quest= '?' )", 256, 0, input);
 
                 throw nvae;
             }
 
             switch (alt256) {
                 case 1 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2233:6: num= Integer ( ( ',' | '-' | '/' ) num= Integer )*
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2242:6: num= Integer ( ( ',' | '-' | '/' ) num= Integer )*
                     {
                     num=(Token)input.LT(1);
                     match(input,Integer,FOLLOW_Integer_in_cronValue9357); if (failed) return retval;
                     if ( backtracking==0 ) {
                        retval.value += num.getText(); 
                     }
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2233:44: ( ( ',' | '-' | '/' ) num= Integer )*
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2242:44: ( ( ',' | '-' | '/' ) num= Integer )*
                     loop255:
                     do {
                         int alt255=2;
@@ -20686,7 +20695,7 @@ public class CodaParser extends Parser {
 
                         switch (alt255) {
                     	case 1 :
-                    	    // /Users/michaelarace/code/codaserver/src/Coda.g:2233:46: ( ',' | '-' | '/' ) num= Integer
+                    	    // /Users/michaelarace/code/codaserver/src/Coda.g:2242:46: ( ',' | '-' | '/' ) num= Integer
                     	    {
                     	    if ( input.LA(1)==85||input.LA(1)==191||input.LA(1)==193 ) {
                     	        input.consume();
@@ -20717,7 +20726,7 @@ public class CodaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2233:107: star= '*'
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2242:107: star= '*'
                     {
                     star=(Token)input.LT(1);
                     match(input,178,FOLLOW_178_in_cronValue9390); if (failed) return retval;
@@ -20728,7 +20737,7 @@ public class CodaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /Users/michaelarace/code/codaserver/src/Coda.g:2233:144: quest= '?'
+                    // /Users/michaelarace/code/codaserver/src/Coda.g:2242:144: quest= '?'
                     {
                     quest=(Token)input.LT(1);
                     match(input,205,FOLLOW_205_in_cronValue9398); if (failed) return retval;
@@ -21960,8 +21969,8 @@ public class CodaParser extends Parser {
 
     // $ANTLR start synpred471
     public final void synpred471_fragment() throws RecognitionException {   
-        // /Users/michaelarace/code/codaserver/src/Coda.g:2012:10: ( '(' searchCondition ')' )
-        // /Users/michaelarace/code/codaserver/src/Coda.g:2012:11: '(' searchCondition ')'
+        // /Users/michaelarace/code/codaserver/src/Coda.g:2021:10: ( '(' searchCondition ')' )
+        // /Users/michaelarace/code/codaserver/src/Coda.g:2021:11: '(' searchCondition ')'
         {
         match(input,84,FOLLOW_84_in_synpred4718151); if (failed) return ;
         pushFollow(FOLLOW_searchCondition_in_synpred4718153);
@@ -21976,8 +21985,8 @@ public class CodaParser extends Parser {
 
     // $ANTLR start synpred487
     public final void synpred487_fragment() throws RecognitionException {   
-        // /Users/michaelarace/code/codaserver/src/Coda.g:2072:7: ( function )
-        // /Users/michaelarace/code/codaserver/src/Coda.g:2072:8: function
+        // /Users/michaelarace/code/codaserver/src/Coda.g:2081:7: ( function )
+        // /Users/michaelarace/code/codaserver/src/Coda.g:2081:8: function
         {
         pushFollow(FOLLOW_function_in_synpred4878555);
         function();
@@ -21990,10 +21999,10 @@ public class CodaParser extends Parser {
 
     // $ANTLR start synpred490
     public final void synpred490_fragment() throws RecognitionException {   
-        // /Users/michaelarace/code/codaserver/src/Coda.g:2074:7: ( ( alias2 )? dbObject )
-        // /Users/michaelarace/code/codaserver/src/Coda.g:2074:8: ( alias2 )? dbObject
+        // /Users/michaelarace/code/codaserver/src/Coda.g:2083:7: ( ( alias2 )? dbObject )
+        // /Users/michaelarace/code/codaserver/src/Coda.g:2083:8: ( alias2 )? dbObject
         {
-        // /Users/michaelarace/code/codaserver/src/Coda.g:2074:8: ( alias2 )?
+        // /Users/michaelarace/code/codaserver/src/Coda.g:2083:8: ( alias2 )?
         int alt357=2;
         int LA357_0 = input.LA(1);
 
@@ -22013,7 +22022,7 @@ public class CodaParser extends Parser {
         }
         switch (alt357) {
             case 1 :
-                // /Users/michaelarace/code/codaserver/src/Coda.g:2074:9: alias2
+                // /Users/michaelarace/code/codaserver/src/Coda.g:2083:9: alias2
                 {
                 pushFollow(FOLLOW_alias2_in_synpred4908586);
                 alias2();

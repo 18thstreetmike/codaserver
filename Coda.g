@@ -1970,8 +1970,14 @@ selectItem returns [String value]
     			$value = $a2.value + ".* "; 
     		} else if (ex != null) {
     			$value = $a2.value + "." + $ex.value.toString() + " ";
+    			if (a1 != null) {
+	    			$value += " AS " + $a1.value + " ";
+	    		}
     		} else {
     			$value = $a2.value + "." + $co.text + " ";
+    			if (a1 != null) {
+	    			$value += " AS " + $a1.value + " ";
+	    		}
     		}
     	} else if (co != null) {
     		$value = $co.text + " ";
@@ -1985,6 +1991,9 @@ selectItem returns [String value]
     		}
     	} else {
     		$value = " ";
+    		if (a1 != null) {
+    			$value += " AS " + $a1.value + " ";
+    		}
     	}
     	
     }
