@@ -76,7 +76,7 @@ public class CodaSubSearchCondition {
             String retval = (this.notFlag ? "NOT" : "") + predicate.print(fromClause);
             return retval;
         } else {
-            return (this.notFlag ? "NOT" : "") + "(" + condition.toString() + ")";
+            return (this.notFlag ? "NOT" : "") + "(" + condition.print(fromClause) + ")";
         }
     }
 }
