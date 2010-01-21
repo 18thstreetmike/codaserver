@@ -6537,10 +6537,10 @@ public class CodaServer {
         Vector<CodaTableNameAlias> tables = fromClause.getMappings();
         for (CodaTableNameAlias tableName : tables) {
             if (!this.isForm(connection, prefix, tableName.getTableName())) {
-                if (!deployedApplications.hasTablePermission(applicationName, userId, (this.isGroupTable(connection, prefix, tableName.getTableName()) ? sessions.getSessionGroupId(sessionKey) : -1), environmentId, Datasource.TABLE_SELECT, tableName.getTableName())) {
-                    return new CodaResponse(true, null, 9012);
-                }
-            } else {
+                if (!tableName.getTableName().equals(prefix + "form_statuses") && !deployedApplications.hasTablePermission(applicationName, userId, (this.isGroupTable(connection, prefix, tableName.getTableName()) ? sessions.getSessionGroupId(sessionKey) : -1), environmentId, Datasource.TABLE_SELECT, tableName.getTableName())) {
+					return new CodaResponse(true, null, 9012);
+				}
+			} else {
                 acceptableStatus.put(tableName.getAlias() == null ? tableName.getTableName() : tableName.getAlias(), deployedApplications.getFormStatusesForPermission(applicationName, userId, (this.isGroupTable(connection, prefix, tableName.getTableName()) ? sessions.getSessionGroupId(sessionKey) : -1), environmentId, Datasource.FORM_STATUS_VIEW, tableName.getTableName()));
             }
         }
