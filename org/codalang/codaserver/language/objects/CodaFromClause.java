@@ -77,11 +77,11 @@ public class CodaFromClause {
         } else if (alias != null && aliases.containsKey(alias.toUpperCase())) {
             return aliases.get(alias);
         } else if (getColumns().containsKey(columnName.toUpperCase())) {
-            if (getColumns().get(columnName.toUpperCase()).size() == 1) {
+            //if (getColumns().get(columnName.toUpperCase()).size() == 1) {
 				return getColumns().get(columnName.toUpperCase()).get(0).toUpperCase();
-			} else {
-				throw new CodaException("The column '" + columnName + "' is ambiguous.");
-			}
+			//} else {
+				//throw new CodaException("The column '" + columnName + "' is ambiguous.");
+			//}
         } else {
             throw new CodaException("The column '" + columnName + "' is not found in the source tables. Aliases size: " + aliases.size() + ", Columns size " + getColumns().size());
         }
