@@ -26,7 +26,7 @@ public class CodaTableNameAlias {
     }
 
     public String getTableName() {
-        return tableName.toUpperCase();
+        return tableName;
     }
 
     public void setTableName(String tableName) {
@@ -34,7 +34,7 @@ public class CodaTableNameAlias {
     }
 
     public String getAlias() {
-        return (alias == null ? null : alias.toUpperCase());
+        return (alias == null ? null : alias);
     }
 
     public void setAlias(String alias) {

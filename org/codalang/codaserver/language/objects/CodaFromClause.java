@@ -73,9 +73,9 @@ public class CodaFromClause {
     
     public String getTableName(String alias, String columnName) throws CodaException {
         if (this.tableName != null) {
-            return tableName.toUpperCase();
+            return tableName;
         } else if (alias != null && aliases.containsKey(alias.toUpperCase())) {
-            return aliases.get(alias.toUpperCase());
+            return aliases.get(alias);
         } else if (getColumns().containsKey(columnName.toUpperCase())) {
             if (getColumns().get(columnName.toUpperCase()).size() == 1) {
 				return getColumns().get(columnName.toUpperCase()).get(0).toUpperCase();
