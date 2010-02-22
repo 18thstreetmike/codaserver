@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 /Users/michaelarace/code/codaserver/src/Coda.g 2010-01-18 14:31:58
+// $ANTLR 3.0.1 /Users/michaelarace/code/codaserver/src/Coda.g 2010-02-21 16:56:51
 
 	package org.codalang.codaserver.language;
 	
@@ -14694,7 +14694,7 @@ public class CodaParser extends Parser {
 
             if ( backtracking==0 ) {
 
-              		if (values.size() == 0) {
+              		if (values.size() > 0) {
               			Vector<String> row = new Vector();
               			for (int i = 0; i < values.size(); i++) {
               				CodaConstant temp = (CodaConstant)values.get(i);

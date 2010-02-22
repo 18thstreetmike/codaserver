@@ -5404,7 +5404,7 @@ public class CodaServer {
 		Hashtable<String,TableFieldDefinition> fields = this.getFieldsForTable(connection, prefix, tableId, serverConnection);
 
 		// get rid of the stray row
-		if (rows.get(rows.size() - 1).size() == 0) {
+		if (rows.size() > 0 && rows.get(rows.size() - 1).size() == 0) {
 			rows.remove(rows.size() - 1);
 		}
 

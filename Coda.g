@@ -1549,7 +1549,7 @@ insert	 returns [CodaResponse response]
 	(	'(' fn=objectName { fields.add($fn.text); } (',' fn=objectName  { fields.add($fn.text); } )* ')' 'VALUES' ivl=insertValuesList { rows.add($ivl.values); } (',' ivl=insertValuesList { rows.add($ivl.values); } )*
 	|	'SET' fn=objectName  { fields.add($fn.text); } '=' iv=insertUpdateValue { values.add($iv.value); } (',' fn=objectName  { fields.add($fn.text); } '=' iv=insertUpdateValue { values.add($iv.value); } )* )
 	{
-		if (values.size() == 0) {
+		if (values.size() > 0) {
 			Vector<String> row = new Vector();
 			for (int i = 0; i < values.size(); i++) {
 				CodaConstant temp = (CodaConstant)values.get(i);
