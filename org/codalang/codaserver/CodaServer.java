@@ -3523,13 +3523,13 @@ public class CodaServer {
                                 if (this.isArrayFieldNameInUse(connection, prefix, field.getFieldName().toUpperCase())) {
 									return new CodaResponse(true, null, 2038, "Column '" + field.getFieldName() + "' must have a globally unique name");
 								}
-								connection.alterColumn(tableName.toUpperCase(), fieldName.toUpperCase(), new ColumnDefinition(field.getFieldName().toUpperCase(), Types.CLOB, false));
-                                connection.alterTable(fieldName.toUpperCase(), field.getFieldName().toUpperCase());
+								connection.alterColumn(tableName, fieldName.toUpperCase(), new ColumnDefinition(field.getFieldName().toUpperCase(), Types.CLOB, false));
+                                connection.alterTable(fieldName, field.getFieldName().toUpperCase());
                             }
                             connection.alterColumn(field.getFieldName().toUpperCase(), "VALUE", new ColumnDefinition("VALUE", CodaTypeConverter.getSQLTypeFromCodaType(field.getTypeName()), false));
                         } else {
                             // alter the old column
-                            connection.alterColumn(tableName.toUpperCase(), fieldName.toUpperCase(), new ColumnDefinition(field.getFieldName(), Types.CLOB, false));
+                            connection.alterColumn(tableName, fieldName.toUpperCase(), new ColumnDefinition(field.getFieldName(), Types.CLOB, false));
 
                             // create the new table
                             ColumnDefinition[] cols = new ColumnDefinition[2];
@@ -3543,11 +3543,11 @@ public class CodaServer {
                         if (arrayField) {
                             connection.dropTable(fieldName.toUpperCase());
 
-                            connection.alterColumn(tableName.toUpperCase(), fieldName.toUpperCase(), new ColumnDefinition(field.getFieldName(), CodaTypeConverter.getSQLTypeFromCodaType(field.getTypeName()), field.isNullableFlag()));
+                            connection.alterColumn(tableName, fieldName.toUpperCase(), new ColumnDefinition(field.getFieldName(), CodaTypeConverter.getSQLTypeFromCodaType(field.getTypeName()), field.isNullableFlag()));
 
                         } else {
 
-                            connection.alterColumn(tableName.toUpperCase(), fieldName, new ColumnDefinition(field.getFieldName(), CodaTypeConverter.getSQLTypeFromCodaType(field.getTypeName()), field.isNullableFlag()));
+                            connection.alterColumn(tableName, fieldName, new ColumnDefinition(field.getFieldName(), CodaTypeConverter.getSQLTypeFromCodaType(field.getTypeName()), field.isNullableFlag()));
                         }
 
                     }
@@ -3610,9 +3610,9 @@ public class CodaServer {
 
                 if(arrayField) {
                     connection.dropTable(fieldName.toUpperCase());
-                    connection.dropColumn(tableName.toUpperCase(), fieldName.toUpperCase());
+                    connection.dropColumn(tableName, fieldName.toUpperCase());
                 } else {
-                    connection.dropColumn(tableName.toUpperCase(), fieldName.toUpperCase());
+                    connection.dropColumn(tableName, fieldName.toUpperCase());
                 }
 
             } catch (SQLException e) {
@@ -3946,7 +3946,7 @@ public class CodaServer {
                         return new CodaResponse(true, null, 2036);
                     }
                     try {
-                        connection.alterTable(tableName.toUpperCase(), newTableName.toUpperCase());
+                        connection.alterTable(tableName, newTableName);
                     } catch (SQLException e) {
                         return new CodaResponse(true, null, 8004, "The following error was reported by the database:" + e.getMessage());
                     }
@@ -4534,7 +4534,7 @@ public class CodaServer {
                         return new CodaResponse(true, null, 2036);
                     }
                     try {
-                        connection.alterTable(tableName.toUpperCase(), newTableName.toUpperCase());
+                        connection.alterTable(tableName, newTableName);
                     } catch (SQLException e) {
                         return new CodaResponse(true, null, 8004, "The following error was reported by the database:" + e.getMessage());
                     }
@@ -4981,7 +4981,7 @@ public class CodaServer {
             }
 
             try {
-                connection.createIndex(indexName.toUpperCase(), tableName.toUpperCase(), fields, uniqueFlag);
+                connection.createIndex(indexName.toUpperCase(), tableName, fields, uniqueFlag);
             } catch (SQLException e) {
                 return new CodaResponse(true, null, 8004, "The following error was reported by the database:" + e.getMessage());
             }
@@ -5553,7 +5553,7 @@ public class CodaServer {
                 return new CodaResponse(true, null, 4002, e.getMessage());
             }
 
-            long id = connection.insertRow(tableName.toUpperCase(), values);
+            long id = connection.insertRow(tableName, values);
 
 			Vector rowVector = new Vector();
 			rowVector.add(id);
@@ -6262,7 +6262,7 @@ public class CodaServer {
                     }
 
 
-            long id = connection.insertRow(tableName.toUpperCase(), values);
+            long id = connection.insertRow(tableName, values);
 
 			Vector rowVector = new Vector();
 			rowVector.add(id);
